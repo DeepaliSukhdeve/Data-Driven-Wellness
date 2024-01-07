@@ -21,3 +21,15 @@ Considerations about the Dataset:
 # Process
 The organization of the data is essential for effective analysis. In SQL Server, the data is likely organized in a tabular format, with each row representing a specific record (e.g., daily activity) and each column representing a different attribute or variable. 
 In the Process phase I have organized data by adding columns, extracting information and removing bad data and duplicates. For the sake of simplicity, I have centralized all of the data into a Relational Database that is connected using SQL Server. This allowed me to easily manage the entirety of the files and make relevant queries, as the CSV files can be transformed into tables which I have linked by joining common attributes.
+
+--For importing the dataset to Microsoft SQL Server Management Studio,Go to Databases -> New Database -> Create a New Database 
+--Then Right Click on the Database Created -> Click on Tasks -> Click on Import Data 
+--Follow along 
+--Select the CSV file from your device and import 
+
+--Preview the dataset 
+SELECT *
+FROM dbo.dailyActivity_merged
+
+
+
