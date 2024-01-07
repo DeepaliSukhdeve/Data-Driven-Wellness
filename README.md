@@ -26,6 +26,9 @@ In the Process phase I have organized data by adding columns, extracting informa
 --Then Right Click on the Database Created -> Click on Tasks -> Click on Import Data 
 --Follow along 
 --Select the CSV file from your device and import 
+<img width="199" alt="image111" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/5d3ca981-3d94-4a4b-b338-c258db1afaac">
+
+
 
 
 
