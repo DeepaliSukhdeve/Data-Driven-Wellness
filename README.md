@@ -27,9 +27,7 @@ In the Process phase I have organized data by adding columns, extracting informa
 --Follow along 
 --Select the CSV file from your device and import 
 
---Preview the dataset 
-SELECT *
-FROM dbo.dailyActivity_merged
+
 
 
 
