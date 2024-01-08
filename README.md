@@ -11,9 +11,9 @@ Sršen,Bellabeat's cofounder, would like an analysis of Bellabeat’s available 
 -How can these trends help influence Bellabeat marketing strategy?
 
 # Prepare
-The dataset, obtained from Kaggle, has been imported into  Microsoft SQL Server Management Studio to help process and analyze 
+The dataset, obtained from Kaggle, has been imported into  Microsoft SQL Server Management Studio to help store,organize,process and analyze. 
 For visualization purposes, I've used Tableau Public, employing its dynamic features to create compelling visual representations of the analyzed data. 
-Considerations about the Dataset:
+Limitations observed about the Dataset:
 -It is unclear how participants are choosen
 -The dataset does not contain any demographic information about the users, including gender, age, or location, which would be beneficial for marketing purposes to target specific customers
 -The dataset is not current.The time limitation for the survey is two months long.
@@ -28,12 +28,88 @@ In the Process phase I have organized data by adding columns, extracting informa
 --Select the CSV file from your device and import 
 
 ```
-
+--Preview Data in dailyActivity
 select *
 from dbo.dailyActivity_merged
 
 ```
+```
 
+--Identify Number of Users
+SELECT DISTINCT Id
+FROM DBO.dailyActivity_merged
+GROUP BY Id
+
+```
+```
+
+--Cleaning and Preparing Data
+--Identify Missing Values 
+SELECT COUNT(*) AS MissingCount
+FROM  dbo.dailyActivity_merged
+WHERE Id IS NULL
+
+```
+```
+
+--Identifying for duplicates in DailyActivity
+SELECT Id, ActivityDate, TotalSteps, Count(*)
+FROM dbo.dailyActivity_merged
+GROUP BY id, ActivityDate, TotalSteps
+HAVING Count(*) > 1
+
+```
+```
+
+-- Check data types of columns
+SELECT COLUMN_NAME, DATA_TYPE
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'dailyactivity_merged'
+
+```
+```
+
+--Modify Data Types as required
+ALTER TABLE dbo.dailyActivity_merged
+ALTER COLUMN activitydate date
+
+ALTER TABLE dbo.dailyActivity_merged
+ALTER COLUMN totalsteps int
+
+```
+```
+-- Add day_0f_week column in daily_activities
+Alter Table  dbo.dailyActivity_merged
+ADD day_of_week nvarchar(50)
+
+```
+```
+
+--Extract datename from ActivityDate
+Update dbo.dailyActivity_merged
+SET day_of_week = DATENAME(DW, ActivityDate)
+
+```
+```
+
+--Preview Data in sleepDay_merged
+SELECT *
+FROM DBO.sleepDay_merged
+
+```
+```
+
+--Modify data type of SleepDay
+ALTER TABLE DBO.sleepDay_merged
+ALTER COLUMN SleepDay Date
+
+```
+```
+--Preview Data in dbo.hourlyCalories_merged
+select *
+from dbo.hourlyCalories_merged
+
+```
 
 
 
