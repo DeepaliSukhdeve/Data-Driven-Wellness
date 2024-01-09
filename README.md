@@ -110,6 +110,83 @@ select *
 from dbo.hourlyCalories_merged
 
 ```
+```
+
+--Modify hourlyCalories_merged by splitting Time and date
+Alter Table dbo.hourlyCalories_merged
+ADD time_new int, date_new DATE;
+
+Update dbo.hourlyCalories_merged
+Set time_new = DATEPART(hh, ActivityHour);
+
+Update dbo.hourlyCalories_merged
+Set date_new = CAST(ActivityHour AS DATE);
+
+```
+```
+
+--Preview Data in hourlyIntensities_merged
+SELECT *
+FROM DBO.hourlyIntensities_merged
+
+```
+```
+
+--Modify hourlyIntensities_merged by splitting Time and date
+Alter Table DBO.hourlyIntensities_merged
+ADD time_new int, date_new DATE;
+
+Update DBO.hourlyIntensities_merged
+Set time_new = DATEPART(hh, ActivityHour);
+
+Update DBO.hourlyIntensities_merged
+Set date_new = CAST(ActivityHour AS DATE);
+
+```
+```
+
+--Preview Data in hourlySteps_merged
+SELECT *
+FROM DBO.hourlySteps_merged
+
+```
+```
+
+--Modify hourlySteps_merged by splitting Time and date
+Alter Table DBO.hourlySteps_merged
+ADD time_new int, date_new DATE
+
+
+Update DBO.hourlySteps_merged
+Set time_new = DATEPART(hh, ActivityHour)
+
+
+Update DBO.hourlySteps_merged
+Set date_new = CAST(ActivityHour AS DATE)
+
+```
+```
+
+--Preview Data in minuteMETsNarrow_merged
+SELECT *
+FROM DBO.minuteMETsNarrow_merged
+
+```
+```
+
+--Modify minuteMETsNarrow_merged by splitting Time and date
+Alter Table DBO.minuteMETsNarrow_merged
+ADD time_new TIME, date_new DATE
+
+Update DBO.minuteMETsNarrow_merged
+Set time_new = CAST(ActivityMinute as time)
+
+Update DBO.minuteMETsNarrow_merged
+Set date_new = CAST(ActivityMinute AS DATE)
+
+```
+```
+
 
 
 
