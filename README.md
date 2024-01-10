@@ -203,8 +203,92 @@ GROUP BY  day_of_week
 
 ```
 
-A daily average analysis based on the provided smart device usage data, you can calculate the average values for relevant metrics for each day. 
+### A daily average analysis based on the provided smart device usage data, we can calculate the average values for relevant metrics for each day. 
+
 <img width="299" alt="Daily Average Analysis" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/c84075de-d2a9-4c08-85b5-89624a6ea90f">
+
+### During which hour of the day were the more calories burned?
+ It provides insights into how users engage with their devices over time.
+
+<img width="484" alt="Average Calories Burned per hour" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/938b1bcd-bca5-47e4-a32b-6926fdd32fa4">
+
+
+-From the graph above, we can see that the most desired time people are active throughout the day is between 8:00 AM - 7:00PM
+
+### Compare Different Metrics 
+Duration of each Activity and Calories Burned Per User
+
+```
+
+Select Id,
+SUM(TotalSteps) as total_steps,
+SUM(VeryActiveMinutes) as total_very_active_mins,
+Sum(FairlyActiveMinutes) as total_fairly_active_mins,
+SUM(LightlyActiveMinutes) as total_lightly_active_mins,
+SUM(Calories) as total_calories
+From [dbo].[dailyActivity_merged]
+Group By Id
+
+```
+
+
+
+
+<img width="452" alt="Activities and Calories Comparison" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/f58442f6-ae57-4040-bc90-bc50c1bf2838">
+
+
+
+### Activity Time and Calories Burned
+
+
+
+
+
+<img width="315" alt="Steps Vs Calories" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/d5eb556e-7910-4816-965f-dab1fc30ebb9">
+
+
+The total steps vary significantly across users, ranging from as low as 12,352 to as high as 702,840. This indicates diverse levels of physical activity among users.
+
+
+
+
+
+
+<img width="321" alt="Very Active Mins Vs Calories" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/77ac6ff7-ab2f-4773-8745-8dbfa386721b">
+
+
+
+Users spend varying amounts of time in very active minutes. Some users have high values, suggesting they engage in intense physical activities, while others have lower values.
+
+
+
+
+
+
+
+
+<img width="309" alt="Fairly Active Mins Vs Calories" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/643b3709-a1f0-46bd-8115-bef9be5119a7">
+
+
+
+ Some users have a significant portion of their activity categorized as fairly active, indicating a moderate level of intensity.
+
+
+
+
+
+
+
+
+<img width="285" alt="Lightly Active Mins Vs Calories" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/0885428f-baa0-45e7-a872-b4e7eb943bd4">
+
+
+
+The distribution of lightly active minutes also varies among users. This metric may include activities such as walking or light exercises.
+
+
+ 
+
 
 
 
