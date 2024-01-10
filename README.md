@@ -203,6 +203,9 @@ GROUP BY  day_of_week
 
 ```
 
-![Daily Average Analysis](path/to/image/C:\Users\deepa\OneDrive\Documents\Google data analytics\Case Study Data\Images\Daily Average Analysis.png)
+A daily average analysis based on the provided smart device usage data, you can calculate the average values for relevant metrics for each day. 
+<img width="299" alt="Daily Average Analysis" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/c84075de-d2a9-4c08-85b5-89624a6ea90f">
+
+
 
 
