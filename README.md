@@ -185,8 +185,24 @@ Update DBO.minuteMETsNarrow_merged
 Set date_new = CAST(ActivityMinute AS DATE)
 
 ```
+
+
+# Analyze
+Now that our data is stored appropriately and has been prepared for analysis, let's start putting it to work.
+
+
 ```
 
+--Daily Average Analysis
+SELECT AVG(TotalSteps) as avg_steps,
+AVG(TotalDistance) as avg_distance,
+AVG(Calories) as avg_calories,
+day_of_week
+FROM dbo.dailyActivity_merged
+GROUP BY  day_of_week
 
+```
+
+![Daily Average Analysis](path/to/image/C:\Users\deepa\OneDrive\Documents\Google data analytics\Case Study Data\Images\Daily Average Analysis.png)
 
 
