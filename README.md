@@ -207,7 +207,7 @@ GROUP BY  day_of_week
 
 <img width="299" alt="Daily Average Analysis" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/c84075de-d2a9-4c08-85b5-89624a6ea90f">
 
-### During which hour of the day were the more calories burned?
+#### During which hour of the day were the more calories burned?
  It provides insights into how users engage with their devices over time.
 
 <img width="484" alt="Average Calories Burned per hour" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/938b1bcd-bca5-47e4-a32b-6926fdd32fa4">
@@ -215,7 +215,7 @@ GROUP BY  day_of_week
 
 -From the graph above, we can see that the most desired time people are active throughout the day is between 8:00 AM - 7:00PM
 
-### Compare Different Metrics 
+#### Compare Different Metrics 
 Duration of each Activity and Calories Burned Per User
 
 ```
@@ -299,7 +299,78 @@ The distribution of lightly active minutes also varies among users. This metric 
 + These insights provide a foundation for further analysis and can guide decision-making in terms of product development, marketing strategies, and user engagement for Bellabeat.
 
 
- 
+ #### Average Steps Per Hour
+
+This query calculates the average number of steps for each hour, providing insights into the typical step count at different times of the day.
+
+
+ ```
+
+-- Average Steps per Hour
+SELECT
+    AVG(StepTotal) as avg_steps,TIME_NEW   
+FROM
+    [Bellabeat].[dbo].[hourlySteps_merged]
+GROUP BY
+ 	TIME_NEW
+ORDER BY
+   	TIME_NEW
+
+```
+
+
+
+
+
+<img width="436" alt="Average Steps per hour" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/613e12e8-ccdb-4b87-b48a-78845e4417be">
+
+
+
+
+
+
++ The average number of steps varies across different hours of the day, indicating distinct patterns in user activity.
++ During the early morning hours (12 AM to 6 AM), the average steps are relatively low, suggesting that users tend to be less active during these hours, possibly due to sleeping.
++ There is a noticeable increase in average steps from 6 AM to 10 AM, indicating a peak in activity during the morning hours. This could be attributed to activities such as morning walks or commutes.
++ The average steps remain relatively consistent from 10 AM to 2 PM, suggesting that users maintain a certain level of activity during this midday period.
++ The average steps decrease again in the late evening, suggesting reduced activity during the nighttime hours.
++ Peak hours of user activity can be identified to target specific time slots for engagement, promotions, or notifications related to wellness activities.
++ These insights provide a temporal understanding of user activity patterns throughout the day, allowing Bellabeat to tailor its product features or marketing strategies to align with users' daily routines.
+
+
+###  Metrics Comparison Over Time
+
+This query can help understand if there are consistent patterns or if certain metrics are more influential in different periods.
+```
+
+-- Metrics Comparison Over Time
+SELECT
+    AVG(TotalSteps) as avg_steps,
+    AVG(TotalDistance) as avg_distance,
+    AVG(Calories) as avg_calories,
+    ActivityDate
+FROM
+    dbo.dailyActivity_merged
+GROUP BY
+    ActivityDate
+ORDER BY
+    ActivityDate
+
+```
+
+
+
+
+
+
+<img width="529" alt="Metrics Comparison Over Time" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/32a92d0d-bccd-4097-8050-5ac758427d58">
+
+
+
+
+
+
+
 
 
 
