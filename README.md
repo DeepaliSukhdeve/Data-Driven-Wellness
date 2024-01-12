@@ -376,3 +376,71 @@ ORDER BY
 
 
 
+* minuteMETsNarrow_merged appears to contain information about METs (Metabolic Equivalents of Task) for different activity minutes.
+
+  This table could be useful for exploring the intensity of physical activities undertaken by users and correlate it with other metrics like steps, distance, or calories 
+ burned. 
+
+  + METs are a measure of the energy expenditure of physical activities.
+   
+  + One MET is defined as the energy expenditure at rest, which is equivalent to sitting quietly.
+ 
+  + In the context of health and fitness tracking, METs are valuable because they provide a standardized way to measure and compare the intensity of different physical activities. Understanding METs allows to categorize activities based on their energy expenditure.
+
+* Here's how METs are generally categorized:
+   + Low Intensity (1-3 METs): Activities such as sitting, standing, or casual walking.
+   + Moderate Intensity (3-6 METs): Activities like brisk walking, cycling at a moderate pace, or light housework.
+   + Vigorous Intensity (6+ METs): Activities that significantly raise your heart rate and breathing, such as running, cycling at a high speed, or intense exercise.
+
+#### Categorize users into different intensity levels 
+
+```
+
+SELECT
+    Id,
+    AVG(METs) AS avg_METs,
+    CASE
+        WHEN AVG(METs) <= 3 THEN 'Low Intensity'
+        WHEN AVG(METs) > 3 AND AVG(METs) <= 6 THEN 'Moderate Intensity'
+        WHEN AVG(METs) > 6 THEN 'Vigorous Intensity'
+        ELSE 'Unknown'
+    END AS intensity_category
+FROM
+    [Bellabeat].[dbo].[minuteMETsNarrow_merged]
+GROUP BY
+    Id;
+
+```
+
+The output shows the average METs and the corresponding intensity category for each user. 
+
+In this case, all users are categorized as "Vigorous Intensity" based on the provided threshold values. 
+
+This indicates that the average METs for each user fall within the range associated with vigorous intensity activities.
+
+For users categorized under "Vigorous Intensity," Bellabeat could consider providing tailored recommendations and features to support and enhance their vigorous intensity activities. 
+
+Users can be offered 
+
++ Specialized Workouts: Offer workout programs or sessions specifically designed for vigorous intensity exercises. This could include high-intensity interval training (HIIT) routines, advanced cardio workouts, and strength training programs.
+
++ Performance Tracking: Enhance the app's tracking capabilities for vigorous activities. Provide detailed insights into users' performance during high-intensity exercises.
+
++ Motivational Content: Create motivational content and challenges targeted at users engaging in vigorous activities.
+
++ Community Engagement: Foster a sense of community among users with similar activity levels. This could include forums, groups, or challenges specifically for those engaging in vigorous intensity workouts, allowing users to share experiences and tips.
+
++ Health and Safety Tips: Offer health and safety tips related to vigorous exercise. Provide information on proper warm-ups, cool-downs, hydration, and recovery strategies to ensure users stay safe and maximize the benefits of their workouts.
+
++ Integration with Wearables: If users are using Bellabeat's smart wellness products during vigorous activities, ensure seamless integration with wearables to capture accurate and real-time data. This can enhance the overall user experience.
+
++ Personalized Recommendations: Leverage the collected data to provide personalized recommendations for users engaging in vigorous intensity activities. This could include suggested workout routines, recovery strategies, and nutritional guidance tailored to individual preferences and goals.
+     
+
+
+ 
+
+
+
+
+
