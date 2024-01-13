@@ -392,7 +392,7 @@ ORDER BY
    + Moderate Intensity (3-6 METs): Activities like brisk walking, cycling at a moderate pace, or light housework.
    + Vigorous Intensity (6+ METs): Activities that significantly raise your heart rate and breathing, such as running, cycling at a high speed, or intense exercise.
 
-#### Categorize users into different intensity levels 
+### Categorize users into different intensity levels 
 
 ```
 
@@ -435,10 +435,39 @@ Users can be offered
 + Integration with Wearables: If users are using Bellabeat's smart wellness products during vigorous activities, ensure seamless integration with wearables to capture accurate and real-time data. This can enhance the overall user experience.
 
 + Personalized Recommendations: Leverage the collected data to provide personalized recommendations for users engaging in vigorous intensity activities. This could include suggested workout routines, recovery strategies, and nutritional guidance tailored to individual preferences and goals.
+
+
+
+
+### Intensity of Activities
+
+Exploring the distribution of METs to understand the range of activity intensities recorded by the devices.
+
+Identifying peak MET values and correlating them with specific activities or time periods.
+
+```
+
+--Explore the distribution of METs.
+  SELECT
+    METs,
+    COUNT(*) AS Frequency
+FROM
+    [Bellabeat].[dbo].[minuteMETsNarrow_merged]
+GROUP BY
+    METs
+ORDER BY
+    METs;
+
+```
      
+The output of the above query provides the frequency distribution of METs in the dataset. 
+
+
+
 
 
  
+<img width="532" alt="Distribution of METs" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/d6cf7748-70ee-47b3-aab7-d5969b6aeb33">
 
 
 
