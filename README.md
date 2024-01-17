@@ -467,7 +467,66 @@ The output of the above query provides the frequency distribution of METs in the
 
 
  
-<img width="532" alt="Distribution of METs" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/d6cf7748-70ee-47b3-aab7-d5969b6aeb33">
+<img width="532" alt="Distribution of METs" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/d6cf7748-70ee-47b3-aab7-d5969b6aeb33"> 
+
+
+
+
+
+
+
+
+
+```
+
+--Preview Data in sleepDay_merged
+SELECT *
+FROM DBO.sleepDay_merged
+
+```
+
+```
+
+--Checking Duplicate Records in sleepDay_merged
+SELECT Id,SleepDay,TotalSleepRecords,TotalMinutesAsleep,COUNT(*)
+FROM DBO.sleepDay_merged
+GROUP BY Id,SleepDay,TotalSleepRecords,TotalMinutesAsleep
+HAVING COUNT(*) > 1
+--3 Duplicate Entries Found
+
+
+```
+
+```
+
+--Create New Table with Distinct Values 
+SELECT DISTINCT *
+INTO dbo.sleepday_new
+FROM DBO.sleepDay_merged
+GROUP BY Id
+HAVING COUNT(Id) > 1
+
+```
+
+```
+
+--Delete table DBO.sleepDay_merged
+DROP TABLE DBO.sleepDay_merged
+
+```
+
+```
+
+--Identify Sleep Patterns
+SELECT
+    DATENAME(WEEKDAY, sleepDay) AS DayOfWeek,
+    AVG(TotalMinutesAsleep) AS AverageMinutesAsleep
+FROM Bellabeat.dbo.sleepday_new
+GROUP BY DATENAME(WEEKDAY, sleepDay)
+
+```
+
+
 
 
 
