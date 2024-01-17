@@ -515,6 +515,9 @@ DROP TABLE DBO.sleepDay_merged
 
 ```
 
++ Analyzing the average total minutes asleep to understand the typical sleep duration.
++ Looking for trends or patterns in sleep data over time.
+  
 ```
 
 --Identify Sleep Patterns
@@ -530,5 +533,84 @@ GROUP BY DATENAME(WEEKDAY, sleepDay)
 
 
 
+
+<img width="179" alt="Identify Sleep Patterns" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/225ddab7-0524-4c55-be71-be5b3d6926ad">
+
+
+
+
+
+
+
++ Exploring day-to-day variability in both physical activity and sleep metrics. Identifying trends or unusual events that might impact users' routines.
+
+```
+
+--Sleep Trend Analysis
+SELECT SleepDay, TotalMinutesAsleep
+FROM DBO.dailyActivity_merged a
+JOIN DBO.sleepday_new s ON a.ActivityDate = s.SleepDay
+ORDER BY SleepDay
+
+```
+
++ Segmenting users based on their activity and sleep patterns. This can help identify different user groups with distinct behaviors.
+
+
+```
+
+WITH UserSegments AS (
+    SELECT
+        A.Id,
+        AVG(TotalSteps) AS AvgSteps,
+        AVG(TotalMinutesAsleep) AS AvgMinutesAsleep
+    FROM
+        dbo.dailyActivity_merged AS A
+    JOIN
+        dbo.sleepday_new AS S 
+		ON A.ActivityDate = S.SleepDay
+    GROUP BY
+        A.Id
+)
+
+SELECT
+    Id,
+    AvgSteps,
+    AvgMinutesAsleep,
+    CASE
+        WHEN AvgSteps >= 10000 AND AvgMinutesAsleep >= 420 THEN 'Active Sleepers'
+        WHEN AvgSteps >= 10000 AND AvgMinutesAsleep < 420 THEN 'Active, Less Sleep'
+        WHEN AvgSteps < 10000 AND AvgMinutesAsleep >= 420 THEN 'Less Active, Good Sleep'
+        WHEN AvgSteps < 10000 AND AvgMinutesAsleep < 420 THEN 'Less Active, Less Sleep'
+        ELSE 'Other'
+    END AS UserSegment
+FROM
+    UserSegments
+
+```
+
+
+
+
+
+
+<img width="661" alt="User Segmentation" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/190c28c4-16fb-4643-b6a7-b6a0939bb7ed">
+
+
+
+
+
+
+
+
+
+
+
+
++ User segmentation involves categorizing users based on certain characteristics or behaviors. In this case, we want to segment users based on their activity and sleep patterns.
++ Less Active, Less Sleep: Users in this group have lower average steps, indicating a less active lifestyle.They also have a shorter average sleep duration (around 418 minutes).These users might benefit from interventions to increase physical activity and improve sleep habits.
++ Active, Less Sleep:Users in this group are more active, as evidenced by a higher average step count.However, they still have a relatively shorter average sleep duration (around 418 minutes).Strategies to maintain activity levels while improving sleep quality could be explored for this group.
++ Less Active, Good Sleep:This group has lower average steps but a longer and presumably better sleep duration (around 435 minutes).While these users are less active, they seem to prioritize and achieve better sleep.Understanding factors contributing to their good sleep could be valuable.
++ These insights provide a high-level understanding of user behavior, allowing for targeted interventions or personalized recommendations. 
 
 
