@@ -614,3 +614,60 @@ FROM
 + These insights provide a high-level understanding of user behavior, allowing for targeted interventions or personalized recommendations. 
 
 
+
+
+
+
+
+
+<img width="400" alt="User Segmentation Pie Chart" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/1cc214ea-cf2c-408e-9e55-bccc2dd11a22">
+
+
+
+
+
+
+
+
++ Sleep and Calories Comparison
+
+```
+
+--Sleep and Calories Comparison
+Select A.Id, SUM(TotalMinutesAsleep) as total_sleep_min,
+SUM(TotalTimeInBed) as total_time_inbed_min,
+SUM(Calories) as calories
+From dbo.dailyActivity_merged as A
+Inner Join dbo.sleepday_new as S
+ON A.Id = S.Id and A.ActivityDate = S.SleepDay
+Group By A.Id
+
+
+```
+
+
+
+
+
+
+
+
+
+<img width="655" alt="Sleep Vs Calories" src="https://github.com/DeepaliSukhdeve/Data-Driven-Wellness/assets/145950963/aa9b1e0d-a31e-4c56-a61f-4fb4255581f4">
+
+
+
+
+
+
+
+
+
+
+
+
++ The average sleep duration varies, indicating diverse sleep patterns among users.
++ Users with higher activity levels or longer awake periods may tend to burn more calories.
++ Some users have longer sleep durations but spend less time in bed, while others may have shorter sleep durations with more time in bed.
+
+
